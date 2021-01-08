@@ -3,25 +3,25 @@ import Aside from './components/Aside';
 import Footer from './components/Footer';
 import Header from './components/Header';
 import Main from './components/Main';
-import Nav from './components/Nav';
+// import Nav from './components/Nav';
 
 function App() {
-  const [noticesState, setNoticesState] = useState({ notices: [] });
+  const [quotesState, setQuotesState] = useState({ quotes: [] });
 
   useEffect(() => {
-    getNotices();
+   getQuotes();
   }, []);
 
-  function getNotices() {
-    fetch('/notices')
+  function getQuotes() {
+    fetch('/quotes')
     .then(res => res.json())
-    .then(json => setNoticesState({notices: json}))
+    .then(json => setQuotesState({quotes: json}))
     .catch(error => console.log(error));
   }
 
   function handleAdd(event, formInputs) {
     event.preventDefault();
-    fetch('/notices', {
+    fetch('/quotes', {
       body: JSON.stringify(formInputs),
       method: 'POST',
       headers: {
@@ -30,27 +30,27 @@ function App() {
       }
     })
     .then(createdNotice => createdNotice.json())
-    .then(jsonedNotice => { setNoticesState(prevState => 
-      ({ notices: [jsonedNotice, ...prevState.notices] }))
+    .then(jsonedNotice => { setQuotesState(prevState => 
+      ({ quotes: [jsonedNotice, ...prevState.quotes] }))
     })
     .catch(error => console.log(error))
   }
   
   function handleDelete(deletedNotice) {
-    fetch(`/notices/${deletedNotice.id}`, {
+    fetch(`/quotes/${deletedNotice.id}`, {
       method: 'DELETE',
       // headers: {
       //   'Accept': 'application/json, text/plain, */*',
       //   'Content-Type': 'application/json'
     }).then(() => {
-      getNotices();
+     getQuotes();
       })
       .catch(error => console.log(error));
     }
   
     function handleUpdate(event, formInputs) {
       event.preventDefault();
-      fetch(`/notices/${formInputs.id}`, {
+      fetch(`/quotes/${formInputs.id}`, {
         body: JSON.stringify(formInputs),
         method: 'PUT',
         headers: {
@@ -59,7 +59,7 @@ function App() {
         }
       })
       .then(() => {
-        getNotices();
+       getQuotes();
       })
       .catch(error => console.log(error));
     }
@@ -72,7 +72,7 @@ function App() {
           handleSubmit={handleAdd} 
           />
           <Main 
-          notices={noticesState.notices} 
+          quotes={quotesState.quotes} 
           handleDelete={handleDelete}
           handleUpdate={handleUpdate} 
           />
