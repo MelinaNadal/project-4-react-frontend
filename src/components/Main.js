@@ -1,6 +1,6 @@
 import =Quotes from './=Quotes.js';
 
-function Main({ notices, handleDelete, handleUpdate }) {
+function Main({ quotes, handleDelete, handleUpdate }) {
     return (
       <main>
         <=Quotes 
