@@ -3,21 +3,21 @@ import Input from './Input.js';
 
 function Form(props) {
     const [formState, setFormState] = useState({
-      title:'',
-      author:'',
-      phone:''
+     song:'',
+      artist:'',
+      quote:''
     });
 
     useEffect(() => {
-      if(props.notice) {
+      if(props.quote) {
         setFormState({
-          title: props.notice.title,
-          author: props.notice.author,
-          phone: props.notice.phone,
-          id: props.notice.id
+         song: props.quote.song,
+          artist: props.quote.artist,
+          quote: props.quote.quote,
+          id: props.quote.id
         })
       }
-    }, [props.notice]);
+    }, [props.quote]);
 
   function handleChange(event) {
     setFormState(prevState => ({
@@ -28,36 +28,36 @@ function Form(props) {
 
   function handleSubmit(event){
     event.preventDefault();
-    if(props.notice) formState.id = props.notice.id
+    if(props.quote) formState.id = props.quote.id
     props.handleSubmit(event, formState);
   }
     return (
       <form onSubmit={handleSubmit}>
         <Input
           handleChange={handleChange}
-          name="title"
-          placeholder="Notice Title"
+          name="artist"
+          placeholder=" ?"
           type="text"
-          value={formState.title}
-          id="title"
+          value={formState.artist}
+          id="artist"
          />
          <Input
            handleChange={handleChange}
-           name="author"
+           name="artist"
            placeholder="Notice Author"
            type="text"
-           value={formState.author}
-           id="author"
+           value={formState.artist}
+           id="artist"
         />
         <Input
           handleChange={handleChange}
-          name="phone"
-          placeholder="Notice Phone"
+          name="artist"
+          placeholder="quote"
           type="text"
-          value={formState.phone}
-          id="phone"
+          value={formState.quote}
+          id="artist"
        />
-       <input type="submit" value={props.notice ? 'Edit Notice' : 'Add Notice'}/>
+       <input type="submit" value={props.quote ? 'Edit quote' : 'Add quote'}/>
       </form>
     );
   }

@@ -1,4 +1,4 @@
-import =Quotes from './=Quotes.js';
+import Quotes from './=Quotes.js';
 
 function Main({ quotes, handleDelete, handleUpdate }) {
     return (
