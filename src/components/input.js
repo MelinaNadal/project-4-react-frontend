@@ -1,13 +1,13 @@
 function Input({ 
     artist, 
-    title, 
+    song, 
     quote, 
     value, 
     placeholder, 
     handleChange }) {
       return (
         <>
-          <label htmlFor={artist}>{title}</label>
+          <label htmlFor={artist}>{song}</label>
           <input
             id={artist}
             artist={artist}
